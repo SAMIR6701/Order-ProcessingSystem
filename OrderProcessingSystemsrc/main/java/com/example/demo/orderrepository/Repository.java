@@ -2,8 +2,8 @@ package com.example.demo.orderrepository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.orderEntity.OrderProcessingSystem;
+import com.example.demo.orderEntity.Order;
 
-public interface Repository extends JpaRepository<OrderProcessingSystem,Long> {
+public interface Repository extends JpaRepository<Order,Long> {
 
 }
