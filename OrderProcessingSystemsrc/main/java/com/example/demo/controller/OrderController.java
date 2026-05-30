@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.orderEntity.OrderProcessingSystem;
+import com.example.demo.orderEntity.Order;
 import com.example.demo.orderservice.Orderservice;
 
 @RestController
@@ -26,31 +26,31 @@ public class OrderController {
 
 	// create order
 	@PostMapping
-	public ResponseEntity<OrderProcessingSystem> createOrder(@RequestBody OrderProcessingSystem order) {
-		OrderProcessingSystem savedOrder = serv.createOrder(order);
+	public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+		Order savedOrder = serv.createOrder(order);
 		return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
 
 	}
 
 	// GetAllOrders
 	@GetMapping
-	public ResponseEntity<List<OrderProcessingSystem>> getAllOrders() {
-		List<OrderProcessingSystem> orders = serv.getAllOrders();
+	public ResponseEntity<List<Order>> getAllOrders() {
+		List<Order> orders = serv.getAllOrders();
 		return ResponseEntity.ok(orders);
 	}
 
 	// GetByid
 	@GetMapping("/{id}")
-	public ResponseEntity<OrderProcessingSystem> getORderByID(@PathVariable Long id) {
-		OrderProcessingSystem order = serv.getOrderbyId(id);
+	public ResponseEntity<Order> getORderByID(@PathVariable Long id) {
+		Order order = serv.getOrderbyId(id);
 		return ResponseEntity.ok(order);
 	}
 
 	// update order
 	@PutMapping("/{id}")
-	public ResponseEntity<OrderProcessingSystem> updateOrder(@PathVariable Long id,
-			@RequestBody OrderProcessingSystem order) {
-		OrderProcessingSystem updatedorder = serv.updateOrder(id, order);
+	public ResponseEntity<Order> updateOrder(@PathVariable Long id,
+			@RequestBody Order order) {
+		Order updatedorder = serv.updateOrder(id, order);
 		return ResponseEntity.ok(updatedorder);
 	}
 
