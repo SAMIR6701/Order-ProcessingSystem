@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class OrderProcessingSystem {
+public class Order {
 
 
 	@Id
@@ -45,11 +45,11 @@ public class OrderProcessingSystem {
 	private LocalDateTime createAt;
 
 	// Default Constructor
-	public OrderProcessingSystem() {
+	public Order() {
 
 	}
 
-	public OrderProcessingSystem(String ordernumber, String customername, String productName, Integer quantity,
+	public Order(String ordernumber, String customername, String productName, Integer quantity,
 			Double price, Double total_amount, OrderStatus status, LocalDateTime createAt) {
 		super();
 		
