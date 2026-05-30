@@ -80,6 +80,7 @@ public class Orderservice implements OrderServices {
 	public void deleteOrder(Long id) {
 		OrderProcessingSystem existingOrder = repo.findById(id)
 				.orElseThrow(() -> new RuntimeException("order NOt found with id: " + id));
+		repo.delete(existingOrder);
 
 	}
 
