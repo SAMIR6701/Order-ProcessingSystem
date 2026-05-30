@@ -7,12 +7,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.orderEntity.OrderProcessingSystem;
+import com.example.demo.orderEntity.Order;
 import com.example.demo.orderEntity.OrderStatus;
 import com.example.demo.orderrepository.Repository;
 
 @Service
-public class Orderservice implements OrderServices {
+public class Orderservice implements OrderServiceImpl {
 
 	@Autowired
 	private Repository repo;
@@ -20,7 +20,7 @@ public class Orderservice implements OrderServices {
 	// create order number
 
 	@Override
-	public OrderProcessingSystem createOrder(OrderProcessingSystem order) {
+	public Order createOrder(Order order) {
 		// Generate unique order number
 
 		order.setOrdernumber(UUID.randomUUID().toString());
@@ -43,21 +43,21 @@ public class Orderservice implements OrderServices {
 	}
 
 	@Override
-	public List<OrderProcessingSystem> getAllOrders() {
+	public List<Order> getAllOrders() {
 
 		return repo.findAll();
 
 	}
 
 	@Override
-	public OrderProcessingSystem getOrderbyId(Long id) {
+	public Order getOrderbyId(Long id) {
 
 		return repo.findById(id).orElseThrow(() -> new RuntimeException("order Not found with id" + id));
 	}
 
 	@Override
-	public OrderProcessingSystem updateOrder(Long id, OrderProcessingSystem order) {
-		OrderProcessingSystem existingOrder = repo.findById(id)
+	public Order updateOrder(Long id, Order order) {
+		Order existingOrder = repo.findById(id)
 				.orElseThrow(() -> new RuntimeException("orderNotfound with id" + id));
 
 		existingOrder.setCustomername(order.getCustomername());
@@ -78,8 +78,7 @@ public class Orderservice implements OrderServices {
 
 	@Override
 	public void deleteOrder(Long id) {
-		OrderProcessingSystem existingOrder = repo.findById(id)
-				.orElseThrow(() -> new RuntimeException("order NOt found with id: " + id));
+		Order existingOrder = repo.findById(id) .orElseThrow(() -> new RuntimeException("order NOt found with id: " + id));
 		repo.delete(existingOrder);
 
 	}
